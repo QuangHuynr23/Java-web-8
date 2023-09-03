@@ -10,4 +10,5 @@ public class BuildingBean {
     private String name;
     private Integer floorArea;
     private Long[] buildingIds;
+    private Integer numberOfBasement;
 }

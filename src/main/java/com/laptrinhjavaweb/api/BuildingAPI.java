@@ -1,47 +1,88 @@
 package com.laptrinhjavaweb.api;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
+import com.laptrinhjavaweb.bean.AssignmentBuildingBean;
 import com.laptrinhjavaweb.bean.BuildingBean;
-import org.springframework.stereotype.Controller;
+import com.laptrinhjavaweb.bean.ErrorResponseBean;
+import com.laptrinhjavaweb.customexception.FieldRequiredException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/building")
 public class BuildingAPI {
 
-    @RequestMapping(value = "/api/building", method = RequestMethod.GET)
-    public @ResponseBody List<BuildingBean> getBuilding(@RequestParam(value = "name", required = false) String name,
-                                                        @RequestParam(value = "numberofbasement", required = false) Integer numberOfBasement,
-                                                        @RequestParam(value = "types", required = false) List<String> types){
-        //item != null and item != empty and check isNumber
-        // parse
-        System.out.println(name);
-        System.out.println(numberOfBasement);
-        return null;
+    @GetMapping
+    public List<BuildingBean> getBuilding(@RequestParam(value = "name", required = false) String name,
+                                          @RequestParam(value = "numberofbasement", required = false) Integer numberOfBasement,
+                                          @RequestParam(value = "types", required = false) List<String> types) {
+        List<BuildingBean> results = new ArrayList<>();
+        return results;
     }
 
-    @RequestMapping(value = "/api/building/{buildingid}", method = RequestMethod.GET)
-    public @ResponseBody BuildingBean getDetail(@PathVariable("buildingid") Long buildingId){
-        System.out.println(buildingId);
-        return null;
+//    role 7
+//    @PostMapping("/api/building")
+//    public BuildingBean createBuilding(@RequestBody BuildingBean newBuilding) {
+//        try{
+//            System.out.println(10/0);
+//        }
+//        catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return newBuilding;
+//    }
+
+//    @PostMapping("/api/building")
+//    public BuildingBean createBuilding(@RequestBody BuildingBean newBuilding) {
+//        System.out.println(10/0);
+//        return newBuilding;
+//    }
+
+    /*Role 5*/
+    @PostMapping
+//    public Object createBuilding(@RequestBody BuildingBean newBuilding) {
+    public BuildingBean createBuilding(@RequestBody BuildingBean newBuilding) {
+//        try {
+//            System.out.println(10/0);
+////            success
+//            return newBuilding;
+//        } catch (ArithmeticException e){
+////            return detail error
+//            ErrorResponseBean errorResponseBean = new ErrorResponseBean();
+//            errorResponseBean.setError(e.getMessage());
+//            List<String> details = new ArrayList<>();
+//            details.add("1 so khong chia duoc cho 0");
+//            errorResponseBean.setDetails(details);
+//            return errorResponseBean;
+//        }
+
+//        System.out.println(10/0);
+
+            validateData(newBuilding);
+            return newBuilding;
     }
 
-    @RequestMapping(value = "/api/building", method = RequestMethod.POST)
-    public @ResponseBody BuildingBean createBuilding(@RequestBody BuildingBean newBuilding){
-
-        return null;
+    private void validateData(BuildingBean newBuilding) throws FieldRequiredException {
+        if(newBuilding.getName()==null || newBuilding.getName().equals("") || newBuilding.getNumberOfBasement()==null){
+            throw new FieldRequiredException("name or numberofbasement is required");
+        }
     }
 
-    @RequestMapping(value = "/api/building", method = RequestMethod.PUT)
-    public @ResponseBody BuildingBean updateBuilding(@RequestBody BuildingBean updateBuilding){
-        return null;
+
+    @PutMapping
+    public BuildingBean updateBuilding(@RequestBody BuildingBean updateBuilding) {
+        return updateBuilding;
     }
 
-    @RequestMapping(value = "/api/building", method = RequestMethod.DELETE)
-//    public void deleteBuilding(@RequestBody Long[] ids){
-    public void deleteBuilding(@RequestBody BuildingBean deleteBuilding){
+    @DeleteMapping
+    public void deleteBuilding(@RequestBody BuildingBean deleteBuilding) {
+        System.out.println("ok");
+    }
+
+    @PostMapping("/assignment")
+    public void assignmentBuilding(@RequestBody AssignmentBuildingBean assignmentBuildingBean){
         System.out.println("ok");
     }
 }
