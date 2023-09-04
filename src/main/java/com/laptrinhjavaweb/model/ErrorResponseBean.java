@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.bean;
+package com.laptrinhjavaweb.model;
 
 import java.util.ArrayList;
 import java.util.List;

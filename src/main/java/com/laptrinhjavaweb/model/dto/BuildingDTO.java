@@ -1,11 +1,11 @@
-package com.laptrinhjavaweb.bean;
+package com.laptrinhjavaweb.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BuildingBean {
+public class BuildingDTO {
     private Long id;
     private String name;
     private Integer floorArea;

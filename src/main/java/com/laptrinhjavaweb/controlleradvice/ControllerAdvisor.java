@@ -1,6 +1,6 @@
-package com.laptrinhjavaweb;
+package com.laptrinhjavaweb.controlleradvice;
 
-import com.laptrinhjavaweb.bean.ErrorResponseBean;
+import com.laptrinhjavaweb.model.ErrorResponseBean;
 import com.laptrinhjavaweb.customexception.FieldRequiredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +32,12 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 //        details.add("1 so khong chia duoc cho 0");
         result.setDetails(details);
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseBean> handleFieldRequiredException(Exception ex, WebRequest request){
+        ErrorResponseBean errorResponseBean = new ErrorResponseBean();
+        errorResponseBean.setError(ex.getMessage());
+        errorResponseBean.setDetails(null);
+        return new ResponseEntity<>(errorResponseBean, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

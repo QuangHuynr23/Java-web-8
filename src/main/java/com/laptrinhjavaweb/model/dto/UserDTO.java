@@ -1,6 +1,6 @@
-package com.laptrinhjavaweb.bean;
+package com.laptrinhjavaweb.model.dto;
 
-public class UserBean {
+public class UserDTO {
     private Long id;
     private String fullName;
 
