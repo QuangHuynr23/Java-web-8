@@ -34,6 +34,7 @@ public class BuildingAPI {
 //        return newBuilding;
 //    }
 
+    /*Loi 400*/
 //    @PostMapping("/api/building")
 //    public BuildingBean createBuilding(@RequestBody BuildingBean newBuilding) {
 //        System.out.println(10/0);
@@ -58,7 +59,9 @@ public class BuildingAPI {
 //            return errorResponseBean;
 //        }
 
-//        System.out.println(10/0);
+        /*Loi 500*/
+        System.out.println(10/0);
+//        return newBuilding;
 
             validateData(newBuilding);
             return newBuilding;
