@@ -36,17 +36,11 @@ public class BuildingAPI {
 
     @PostMapping
     public BuildingDTO createBuilding(@RequestBody BuildingDTO newBuilding) {
-            try{
                 validateData(newBuilding);
                 return newBuilding;
-            }
-            catch (FieldRequiredException e){
-                throw e;
-            }
-
     }
 
-    private void validateData(BuildingDTO newBuilding) throws FieldRequiredException {
+    private void validateData(BuildingDTO newBuilding){
         if(newBuilding.getName()==null || newBuilding.getName().equals("") || newBuilding.getNumberOfBasement()==null){
             throw new FieldRequiredException("name or numberofbasement is required");
         }
