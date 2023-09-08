@@ -60,7 +60,7 @@ public class BuildingAPI {
 //        }
 
         /*Loi 500*/
-        System.out.println(10/0);
+//        System.out.println(10/0);
 //        return newBuilding;
 
             validateData(newBuilding);
