@@ -67,7 +67,7 @@ public class BuildingAPI {
             return newBuilding;
     }
 
-    private void validateData(BuildingBean newBuilding) throws FieldRequiredException {
+    private void validateData(BuildingBean newBuilding){
         if(newBuilding.getName()==null || newBuilding.getName().equals("") || newBuilding.getNumberOfBasement()==null){
             throw new FieldRequiredException("name or numberofbasement is required");
         }
